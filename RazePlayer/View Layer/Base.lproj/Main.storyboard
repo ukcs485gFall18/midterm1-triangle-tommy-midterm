@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13770" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MUE-gQ-xeZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MUE-gQ-xeZ">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13770"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -201,6 +201,10 @@
                         <viewLayoutGuide key="safeArea" id="U9E-6B-uF7"/>
                     </view>
                     <connections>
+                        <outlet property="backingImageBottomInset" destination="fOJ-NT-o1B" id="fz0-Fc-Rtd"/>
+                        <outlet property="backingImageLeadingInset" destination="3ja-5F-sbm" id="yxG-3u-X38"/>
+                        <outlet property="backingImageTopInset" destination="gsi-UU-TVR" id="pB5-Qi-Rhh"/>
+                        <outlet property="backingImageTrailingInset" destination="7ax-x9-C26" id="lhx-Rf-hx7"/>
                         <outlet property="backingImageView" destination="COp-Ty-xGr" id="hx2-FR-fzR"/>
                         <outlet property="coverArtImage" destination="YvK-6V-2d4" id="KSt-i6-nyq"/>
                         <outlet property="coverImageContainer" destination="mnM-Yz-Upj" id="nMg-pc-GIs"/>

@@ -63,3 +63,4 @@ extension SongViewController: UICollectionViewDelegate {
     miniPlayer?.configure(song: currentSong)
   }
 }
+

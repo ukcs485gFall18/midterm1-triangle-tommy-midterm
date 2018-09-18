@@ -51,6 +51,12 @@ class MaxiSongCardViewController: UIViewController, SongSubscriber {
   @IBOutlet weak var backingImageView: UIImageView!
   @IBOutlet weak var dimmerLayer: UIView!
   //add backing image constraints here
+  
+  //add backing image constraints here
+  @IBOutlet weak var backingImageTopInset: NSLayoutConstraint!
+  @IBOutlet weak var backingImageLeadingInset: NSLayoutConstraint!
+  @IBOutlet weak var backingImageTrailingInset: NSLayoutConstraint!
+  @IBOutlet weak var backingImageBottomInset: NSLayoutConstraint!
  
   // MARK: - View Life Cycle
   override func awakeFromNib() {

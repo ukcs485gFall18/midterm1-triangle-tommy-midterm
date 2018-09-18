@@ -62,6 +62,9 @@ class SongCollectionDatasource: NSObject {
 }
 
 // MARK: - UICollectionViewDataSource
+// This could be where the user's top song's Spotify are displayed by default.
+
+// Query Spotify, grab tracks (10-15 or so), display each of them instead of the canned data
 extension SongCollectionDatasource: UICollectionViewDataSource {
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
