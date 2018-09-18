@@ -51,6 +51,8 @@ class SongViewController: UIViewController, SongSubscriber {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let destination = segue.destination as? MiniPlayerViewController {
       miniPlayer = destination
+      miniPlayer?.delegate = self
+
     }
   }
 }
@@ -63,4 +65,26 @@ extension SongViewController: UICollectionViewDelegate {
     miniPlayer?.configure(song: currentSong)
   }
 }
+
+extension SongViewController: MiniPlayerDelegate {
+  func expandSong(song: Song) {
+    //1.
+    guard let maxiCard = storyboard?.instantiateViewController(
+      withIdentifier: "MaxiSongCardViewController")
+      as? MaxiSongCardViewController else {
+        assertionFailure("No view controller ID MaxiSongCardViewController in storyboard")
+        return
+    }
+    
+    //2.
+    maxiCard.backingImage = view.makeSnapshot()
+    //3.
+    maxiCard.currentSong = song
+    //4.
+    maxiCard.sourceView = miniPlayer
+
+    present(maxiCard, animated: false)
+  }
+}
+
 

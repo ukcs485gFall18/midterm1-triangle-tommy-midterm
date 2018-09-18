@@ -80,3 +80,15 @@ extension MiniPlayerViewController {
     delegate?.expandSong(song: song)
   }
 }
+
+
+extension MiniPlayerViewController: MaxiPlayerSourceProtocol {
+  var originatingFrameInWindow: CGRect {
+    let windowRect = view.convert(view.frame, to: nil)
+    return windowRect
+  }
+  
+  var originatingCoverImageView: UIImageView {
+    return thumbImage
+  }
+}
