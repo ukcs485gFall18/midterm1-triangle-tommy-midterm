@@ -43,7 +43,7 @@ class MaxiSongCardViewController: UIViewController, SongSubscriber {
   weak var sourceView: MaxiPlayerSourceProtocol!
 
   
-  let primaryDuration = 4.0 //set to 0.5 when ready
+  let primaryDuration = 0.5
   let backingImageEdgeInset: CGFloat = 15.0
 
   override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -75,13 +75,21 @@ class MaxiSongCardViewController: UIViewController, SongSubscriber {
   var backingImage: UIImage?
   @IBOutlet weak var backingImageView: UIImageView!
   @IBOutlet weak var dimmerLayer: UIView!
-  //add backing image constraints here
   
   //add backing image constraints here
   @IBOutlet weak var backingImageTopInset: NSLayoutConstraint!
   @IBOutlet weak var backingImageLeadingInset: NSLayoutConstraint!
   @IBOutlet weak var backingImageTrailingInset: NSLayoutConstraint!
   @IBOutlet weak var backingImageBottomInset: NSLayoutConstraint!
+  
+  //lower module constraints
+  @IBOutlet weak var lowerModuleTopConstraint: NSLayoutConstraint!
+  
+  //fake tabbar contraints
+  var tabBarImage: UIImage?
+  @IBOutlet weak var bottomSectionHeight: NSLayoutConstraint!
+  @IBOutlet weak var bottomSectionLowerConstraint: NSLayoutConstraint!
+  @IBOutlet weak var bottomSectionImageView: UIImageView!
  
   // MARK: - View Life Cycle
   override func awakeFromNib() {
@@ -110,8 +118,8 @@ class MaxiSongCardViewController: UIViewController, SongSubscriber {
     configureImageLayerInStartPosition()
     coverArtImage.image = sourceView.originatingCoverImageView.image
     configureCoverImageInStartPosition()
-
-
+    stretchySkirt.backgroundColor = .white //from starter project, this hides the gap
+    configureLowerModuleInStartPosition()
   }
 
   override func viewDidAppear(_ animated: Bool) {
@@ -119,10 +127,15 @@ class MaxiSongCardViewController: UIViewController, SongSubscriber {
     animateBackingImageIn()
     animateImageLayerIn()
     animateCoverImageIn()
-
-
-
+    animateLowerModuleIn()
   }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let destination = segue.destination as? SongSubscriber {
+      destination.currentSong = currentSong
+    }
+  }
+  
 }
 
 // MARK: - IBActions
@@ -131,6 +144,7 @@ extension MaxiSongCardViewController {
   @IBAction func dismissAction(_ sender: Any) {
     animateBackingImageOut()
     animateCoverImageOut()
+    animateLowerModuleOut()
     animateImageLayerOut() { _ in
       self.dismiss(animated: false)
     }
@@ -274,6 +288,44 @@ extension MaxiSongCardViewController {
                     self.configureCoverImageInStartPosition()
                     self.view.layoutIfNeeded()
     })
+  }
+}
+
+//lower module animation
+extension MaxiSongCardViewController {
+  
+  //1.
+  private var lowerModuleInsetForOutPosition: CGFloat {
+    let bounds = view.bounds
+    let inset = bounds.height - bounds.width
+    return inset
+  }
+  
+  //2.
+  func configureLowerModuleInStartPosition() {
+    lowerModuleTopConstraint.constant = lowerModuleInsetForOutPosition
+  }
+  
+  //3.
+  func animateLowerModule(isPresenting: Bool) {
+    let topInset = isPresenting ? 0 : lowerModuleInsetForOutPosition
+    UIView.animate(withDuration: primaryDuration,
+                   delay:0,
+                   options: [.curveEaseIn],
+                   animations: {
+                    self.lowerModuleTopConstraint.constant = topInset
+                    self.view.layoutIfNeeded()
+    })
+  }
+  
+  //4.
+  func animateLowerModuleOut() {
+    animateLowerModule(isPresenting: false)
+  }
+  
+  //5.
+  func animateLowerModuleIn() {
+    animateLowerModule(isPresenting: true)
   }
 }
 

@@ -82,7 +82,7 @@ extension SongViewController: MiniPlayerDelegate {
     maxiCard.currentSong = song
     //4.
     maxiCard.sourceView = miniPlayer
-
+    
     present(maxiCard, animated: false)
   }
 }
