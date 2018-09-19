@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		187D47E2200D0A660094D64C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 187D47E1200D0A660094D64C /* LaunchScreen.xib */; };
+		65310C542151E2FF00A3F908 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65310C532151E2FF00A3F908 /* LoginViewController.swift */; };
+		653B45F82151FB6B00CE0C35 /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653B45F52151FB6B00CE0C35 /* SpotifyAudioPlayback.framework */; };
+		653B45F92151FB6B00CE0C35 /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653B45F62151FB6B00CE0C35 /* SpotifyAuthentication.framework */; };
+		653B45FA2151FB6B00CE0C35 /* SpotifyMetadata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653B45F72151FB6B00CE0C35 /* SpotifyMetadata.framework */; };
+		86D4A76E6A7BEB5711EDE48C /* Pods_RazePlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6CDEA49B9F22B66EC71B19C /* Pods_RazePlayer.framework */; };
 		AD0CBF351FBEF8F20012F4DD /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0CBF341FBEF8F20012F4DD /* Song.swift */; };
 		AD0CBF361FBF07020012F4DD /* SongCollectionDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4BB29A1FBDB9C90044927F /* SongCollectionDatasource.swift */; };
 		AD0CBF381FBF0B390012F4DD /* MiniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0CBF371FBF0B390012F4DD /* MiniPlayerViewController.swift */; };
@@ -32,7 +37,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13A7F52AD7A3560F2935C7CE /* Pods-RazePlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RazePlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RazePlayer/Pods-RazePlayer.debug.xcconfig"; sourceTree = "<group>"; };
 		187D47E1200D0A660094D64C /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		65310C532151E2FF00A3F908 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		653B45F52151FB6B00CE0C35 /* SpotifyAudioPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAudioPlayback.framework; sourceTree = "<group>"; };
+		653B45F62151FB6B00CE0C35 /* SpotifyAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAuthentication.framework; sourceTree = "<group>"; };
+		653B45F72151FB6B00CE0C35 /* SpotifyMetadata.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyMetadata.framework; sourceTree = "<group>"; };
+		653B45FB2151FBAF00CE0C35 /* RazePlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RazePlayer-Bridging-Header.h"; sourceTree = "<group>"; };
 		AD0CBF341FBEF8F20012F4DD /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		AD0CBF371FBF0B390012F4DD /* MiniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewController.swift; sourceTree = "<group>"; };
 		AD0CBF391FBF0F2C0012F4DD /* art5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = art5.jpg; sourceTree = "<group>"; };
@@ -56,6 +67,8 @@
 		AD8322141FC59DD700B67CAF /* UIView+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Snapshot.swift"; sourceTree = "<group>"; };
 		AD8322171FC6FBAF00B67CAF /* MaxiSongCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxiSongCardViewController.swift; sourceTree = "<group>"; };
 		ADE062611FD01D6500EFBC66 /* SongSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongSubscriber.swift; sourceTree = "<group>"; };
+		C6CDEA49B9F22B66EC71B19C /* Pods_RazePlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RazePlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB2B8C5D7C35BEF377E3ADBF /* Pods-RazePlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RazePlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-RazePlayer/Pods-RazePlayer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,17 +76,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				653B45FA2151FB6B00CE0C35 /* SpotifyMetadata.framework in Frameworks */,
+				86D4A76E6A7BEB5711EDE48C /* Pods_RazePlayer.framework in Frameworks */,
+				653B45F92151FB6B00CE0C35 /* SpotifyAuthentication.framework in Frameworks */,
+				653B45F82151FB6B00CE0C35 /* SpotifyAudioPlayback.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15176984BFCE682883826692 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				13A7F52AD7A3560F2935C7CE /* Pods-RazePlayer.debug.xcconfig */,
+				CB2B8C5D7C35BEF377E3ADBF /* Pods-RazePlayer.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		AD3049F81FBDA77E007A7026 = {
 			isa = PBXGroup;
 			children = (
+				653B45FB2151FBAF00CE0C35 /* RazePlayer-Bridging-Header.h */,
 				AD304A031FBDA77E007A7026 /* RazePlayer */,
 				AD304A021FBDA77E007A7026 /* Products */,
+				15176984BFCE682883826692 /* Pods */,
+				DAACDF8E9C5C47C66359706F /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -130,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				AD304A081FBDA77E007A7026 /* Main.storyboard */,
+				65310C532151E2FF00A3F908 /* LoginViewController.swift */,
 				AD304A061FBDA77E007A7026 /* SongViewController.swift */,
 				AD304A1F1FBDB5B2007A7026 /* SongCell.swift */,
 				AD0CBF371FBF0B390012F4DD /* MiniPlayerViewController.swift */,
@@ -157,6 +187,17 @@
 			path = "Model ";
 			sourceTree = "<group>";
 		};
+		DAACDF8E9C5C47C66359706F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				653B45F52151FB6B00CE0C35 /* SpotifyAudioPlayback.framework */,
+				653B45F62151FB6B00CE0C35 /* SpotifyAuthentication.framework */,
+				653B45F72151FB6B00CE0C35 /* SpotifyMetadata.framework */,
+				C6CDEA49B9F22B66EC71B19C /* Pods_RazePlayer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -164,6 +205,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AD304A161FBDA77E007A7026 /* Build configuration list for PBXNativeTarget "RazePlayer" */;
 			buildPhases = (
+				49317FCF6181418AA1E1CF74 /* [CP] Check Pods Manifest.lock */,
 				AD3049FD1FBDA77E007A7026 /* Sources */,
 				AD3049FE1FBDA77E007A7026 /* Frameworks */,
 				AD3049FF1FBDA77E007A7026 /* Resources */,
@@ -189,6 +231,7 @@
 				TargetAttributes = {
 					AD304A001FBDA77E007A7026 = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -230,11 +273,33 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		49317FCF6181418AA1E1CF74 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RazePlayer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AD3049FD1FBDA77E007A7026 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65310C542151E2FF00A3F908 /* LoginViewController.swift in Sources */,
 				AD0CBF351FBEF8F20012F4DD /* Song.swift in Sources */,
 				AD304A071FBDA77E007A7026 /* SongViewController.swift in Sources */,
 				AD0CBF421FBF19B20012F4DD /* Song+ImageLoad.swift in Sources */,
@@ -318,6 +383,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "RazePlayer/RazePlayer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -367,6 +433,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "RazePlayer/RazePlayer-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -374,15 +441,23 @@
 		};
 		AD304A171FBDA77E007A7026 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13A7F52AD7A3560F2935C7CE /* Pods-RazePlayer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = B34ZNVSJ9N;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = RazePlayer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.RazePlayer;
+				PRODUCT_BUNDLE_IDENTIFIER = tdeets.razeware.RazePlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RazePlayer-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -390,15 +465,22 @@
 		};
 		AD304A181FBDA77E007A7026 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB2B8C5D7C35BEF377E3ADBF /* Pods-RazePlayer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = B34ZNVSJ9N;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = RazePlayer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.RazePlayer;
+				PRODUCT_BUNDLE_IDENTIFIER = tdeets.razeware.RazePlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RazePlayer-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

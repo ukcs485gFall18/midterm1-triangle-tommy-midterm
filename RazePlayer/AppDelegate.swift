@@ -33,7 +33,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var window: UIWindow?
   
+  var auth = SPTAuth()
+  
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    // Override point for customization after application launch.
+    auth.redirectURL = URL(string: "tdeets.razeware.RazePlayer://")
+    auth.sessionUserDefaultsKey = "current session"
     return true
+  }
+  
+  func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    // Check if app can handle the URL
+    if auth.canHandle(auth.redirectURL) {
+      auth.handleAuthCallback(withTriggeredAuthURL: url, callback: { (error, session) in
+        // handle error
+        if error != nil {
+          print("error!")
+        }
+        // Add session to User Defaults
+        let userDefaults = UserDefaults.standard
+        let sessionData = NSKeyedArchiver.archivedData(withRootObject: session)
+        userDefaults.set(sessionData, forKey: "SpotifySession")
+        userDefaults.synchronize()
+        // Tell notification center login is successful
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "loginSuccessful"), object: nil)
+      })
+      return true
+    }
+    return false
+    
   }
 }

@@ -34,6 +34,7 @@ class SongViewController: UIViewController, SongSubscriber {
   var datasource:SongCollectionDatasource!
   var miniPlayer:MiniPlayerViewController?
   var currentSong: Song?
+  var accessToken: String?
 
   // MARK: - IBOutlets
   @IBOutlet weak var collectionView: UICollectionView!
@@ -41,10 +42,14 @@ class SongViewController: UIViewController, SongSubscriber {
   // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
     datasource = SongCollectionDatasource(collectionView: collectionView)
     datasource.load()
     collectionView.delegate = self
+    if let token = accessToken {
+      print(token)
+    }
+  
   }
 
   // MARK: - Navigation
