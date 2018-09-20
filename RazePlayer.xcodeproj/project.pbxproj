@@ -12,6 +12,7 @@
 		653B45F82151FB6B00CE0C35 /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653B45F52151FB6B00CE0C35 /* SpotifyAudioPlayback.framework */; };
 		653B45F92151FB6B00CE0C35 /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653B45F62151FB6B00CE0C35 /* SpotifyAuthentication.framework */; };
 		653B45FA2151FB6B00CE0C35 /* SpotifyMetadata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653B45F72151FB6B00CE0C35 /* SpotifyMetadata.framework */; };
+		653B460421529FA500CE0C35 /* SpotifyAPIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653B460321529FA500CE0C35 /* SpotifyAPIController.swift */; };
 		86D4A76E6A7BEB5711EDE48C /* Pods_RazePlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6CDEA49B9F22B66EC71B19C /* Pods_RazePlayer.framework */; };
 		AD0CBF351FBEF8F20012F4DD /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD0CBF341FBEF8F20012F4DD /* Song.swift */; };
 		AD0CBF361FBF07020012F4DD /* SongCollectionDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD4BB29A1FBDB9C90044927F /* SongCollectionDatasource.swift */; };
@@ -44,6 +45,7 @@
 		653B45F62151FB6B00CE0C35 /* SpotifyAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAuthentication.framework; sourceTree = "<group>"; };
 		653B45F72151FB6B00CE0C35 /* SpotifyMetadata.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyMetadata.framework; sourceTree = "<group>"; };
 		653B45FB2151FBAF00CE0C35 /* RazePlayer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RazePlayer-Bridging-Header.h"; sourceTree = "<group>"; };
+		653B460321529FA500CE0C35 /* SpotifyAPIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyAPIController.swift; sourceTree = "<group>"; };
 		AD0CBF341FBEF8F20012F4DD /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		AD0CBF371FBF0B390012F4DD /* MiniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewController.swift; sourceTree = "<group>"; };
 		AD0CBF391FBF0F2C0012F4DD /* art5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = art5.jpg; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			children = (
 				AD4BB29C1FBDBACA0044927F /* Canned Data */,
 				AD304A191FBDAA82007A7026 /* DataStack.swift */,
+				653B460321529FA500CE0C35 /* SpotifyAPIController.swift */,
 				AD304A1B1FBDAC31007A7026 /* SongBuilder.swift */,
 				AD4BB29A1FBDB9C90044927F /* SongCollectionDatasource.swift */,
 			);
@@ -209,6 +212,7 @@
 				AD3049FD1FBDA77E007A7026 /* Sources */,
 				AD3049FE1FBDA77E007A7026 /* Frameworks */,
 				AD3049FF1FBDA77E007A7026 /* Resources */,
+				0A47887879335ED7B2589296 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -274,6 +278,30 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0A47887879335ED7B2589296 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RazePlayer/Pods-RazePlayer-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RazePlayer/Pods-RazePlayer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		49317FCF6181418AA1E1CF74 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -303,6 +331,7 @@
 				AD0CBF351FBEF8F20012F4DD /* Song.swift in Sources */,
 				AD304A071FBDA77E007A7026 /* SongViewController.swift in Sources */,
 				AD0CBF421FBF19B20012F4DD /* Song+ImageLoad.swift in Sources */,
+				653B460421529FA500CE0C35 /* SpotifyAPIController.swift in Sources */,
 				AD0CBF381FBF0B390012F4DD /* MiniPlayerViewController.swift in Sources */,
 				AD304A1A1FBDAA82007A7026 /* DataStack.swift in Sources */,
 				AD304A1C1FBDAC31007A7026 /* SongBuilder.swift in Sources */,

@@ -331,19 +331,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QyX-RX-iMO">
-                                <rect key="frame" x="184" y="353" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QyX-RX-iMO">
+                                <rect key="frame" x="96" y="351.66666666666669" width="223" height="34"/>
+                                <color key="backgroundColor" red="0.33401905745113658" green="1" blue="0.29787122954072298" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="223" id="NPb-Mh-jNN"/>
+                                </constraints>
+                                <state key="normal" title="Login With Spotify">
+                                    <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                </state>
                                 <connections>
                                     <action selector="loginPressed:" destination="r1m-fC-BCA" eventType="touchUpInside" id="O26-8h-WW7"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="QyX-RX-iMO" firstAttribute="centerY" secondItem="Brf-ro-IOI" secondAttribute="centerY" id="F53-OH-RUe"/>
+                            <constraint firstItem="QyX-RX-iMO" firstAttribute="centerX" secondItem="Brf-ro-IOI" secondAttribute="centerX" id="mlV-iH-ojo"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="317-mk-A3c"/>
                     </view>
                     <connections>
+                        <outlet property="loginButton" destination="QyX-RX-iMO" id="hON-wB-gT6"/>
                         <segue destination="MUE-gQ-xeZ" kind="show" identifier="loginSuccessful" id="Fhu-gb-AJk"/>
                     </connections>
                 </viewController>

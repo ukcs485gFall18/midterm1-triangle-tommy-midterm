@@ -28,6 +28,10 @@
 
 import UIKit
 
+// LoginViewController
+// Login with Spotify, and upon successful login, go to the main SongViewController scene
+// Created by Thomas Deeter
+
 class LoginViewController: UIViewController, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate {
   
   var auth = SPTAuth.defaultInstance()!
@@ -36,13 +40,16 @@ class LoginViewController: UIViewController, SPTAudioStreamingPlaybackDelegate, 
   var webUrl: URL?
   var appUrl: URL?
   
-  override func viewDidLoad() {
+    @IBOutlet weak var loginButton: UIButton!
+    
+    override func viewDidLoad() {
     super.viewDidLoad()
     setupAuth()
     // Define identifier
     let notificationName = Notification.Name("loginSuccessful")
     // Register to receive notification
     NotificationCenter.default.addObserver(self, selector: #selector(self.updateAfterFirstLogin), name: notificationName, object: nil)
+        loginButton.layer.cornerRadius = 5
   }
   
   // Function that configures the authentication parameters
@@ -53,38 +60,48 @@ class LoginViewController: UIViewController, SPTAudioStreamingPlaybackDelegate, 
     SPTAuth.defaultInstance().redirectURL = URL(string: "tdeets.razeware.RazePlayer://")
     // Scopes requested from the API
     SPTAuth.defaultInstance().requestedScopes = [SPTAuthStreamingScope, SPTAuthPlaylistModifyPrivateScope, SPTAuthPlaylistModifyPublicScope, SPTAuthPlaylistReadPrivateScope]
+    // Web and iOS app versions of login URLs
     webUrl = SPTAuth.defaultInstance().spotifyWebAuthenticationURL()
     appUrl = SPTAuth.defaultInstance().spotifyAppAuthenticationURL()
   }
-  @objc func updateAfterFirstLogin () {
-    print("updatingAfterFirstLogin")
-    let defaults = UserDefaults.standard
-    
-    if let sessionObj:AnyObject = defaults.object(forKey: "SpotifySession") as AnyObject? {
-      let sessionDataObj = sessionObj as! Data
-      let firstTimeSession = NSKeyedUnarchiver.unarchiveObject(with: sessionDataObj) as! SPTSession
-      self.session = firstTimeSession
-      initializePlayer(authSession: session)
-    }
-    else{
-      print("what")
-    }
-  }
   
-  func initializePlayer(authSession:SPTSession){
-    if self.player == nil {
-      self.player = SPTAudioStreamingController.sharedInstance()
-      self.player!.playbackDelegate = self
-      self.player!.delegate = self
-      try! player!.start(withClientId: auth.clientID)
-      self.player!.login(withAccessToken: authSession.accessToken)
-      print("howdy sir")
+    // Upon first login, initialize certain session objects
+    @objc func updateAfterFirstLogin () {
+      print("updatingAfterFirstLogin")
+      let defaults = UserDefaults.standard
+      
+      // Check if the login session is valid
+      if let sessionObj:AnyObject = defaults.object(forKey: "SpotifySession") as AnyObject? {
+        let sessionDataObj = sessionObj as! Data
+        if let firstTimeSession = NSKeyedUnarchiver.unarchiveObject(with: sessionDataObj) as? SPTSession {
+          self.session = firstTimeSession
+          initializePlayer(authSession: session)
+        }
+        else {
+          print("Error logging in!!")
+        }
+      }
+      else{
+        print("Error initializing session")
+      }
     }
-    else {
-      print("what")
-    }
-  }
   
+    // Initialize the Spotify streaming controller
+    func initializePlayer(authSession:SPTSession){
+      if self.player == nil {
+        self.player = SPTAudioStreamingController.sharedInstance()
+        self.player!.playbackDelegate = self
+        self.player!.delegate = self
+        try! player!.start(withClientId: auth.clientID)
+        self.player!.login(withAccessToken: authSession.accessToken)
+        print("Player was initialized")
+      }
+      else {
+        print("Error Initializing Player")
+      }
+    }
+  
+    // Handle the login once the button is pressed
     @IBAction func loginPressed(_ sender: Any) {
       // if the user has the App installed, login with that, otherwise, login with Web version
       if SPTAuth.supportsApplicationAuthentication(){
@@ -95,29 +112,25 @@ class LoginViewController: UIViewController, SPTAudioStreamingPlaybackDelegate, 
       }
       
     }
+  
+    // delegate method that calls once the login was successful. Performs a segue to the main controller
     func audioStreamingDidLogin(_ audioStreaming: SPTAudioStreamingController!) {
-    // after a user authenticates a session, the SPTAudioStreamingController is then initialized and this method called
-    print("audioStreamingDidLogin")
-    /*self.player?.playSpotifyURI("spotify:track:58s6EuEYJdlb0kO7awm3Vp", startingWith: 0, startingWithPosition: 0, callback: { (error) in
-     if (error != nil) {
-     print("playing!")
-     }
-     else{
-     print(error)
-     }
-     })*/
-    
-    self.performSegue(withIdentifier: "loginSuccessful", sender: nil)
+      // after a user authenticates a session, the SPTAudioStreamingController is then initialized and this method called
+      print("audioStreamingDidLogin")
+      self.performSegue(withIdentifier: "loginSuccessful", sender: nil)
+    }
+  
+  func audioStreaming(_ audioStreaming: SPTAudioStreamingController!, didReceiveError error: Error!) {
+    print("ERROR!!!!!!")
   }
   
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    
-    // The segue goes into a TabBarController, we know the first view controller after the Tab bar is the SongViewController
-    let tabVc = segue.destination as! UITabBarController
-    let dvc = tabVc.viewControllers![0] as! SongViewController
-    
-    dvc.accessToken = self.session.accessToken
-    
-  }
+  
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+      // The segue goes into a TabBarController, we know the first view controller after the Tab bar is the SongViewController
+      let tabVc = segue.destination as! UITabBarController
+      let dvc = tabVc.viewControllers![0] as! SongViewController
+      
+      dvc.accessToken = self.session.accessToken
+    }
 }
 
