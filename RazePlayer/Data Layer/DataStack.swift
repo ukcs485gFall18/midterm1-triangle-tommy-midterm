@@ -28,6 +28,7 @@
 
 import CoreData
 
+
 enum DataStackState {
   case unloaded
   case loaded
@@ -38,15 +39,46 @@ class DataStack: NSObject {
   // MARK: - Properties
   private(set) var allSongs: [Song] = []
   
+//  func load(dictionary: [String: Any], completion: (Bool) -> Void) {
+//    print ("Test")
+//    if let songs = dictionary["Songs"] as? [[String: Any]] {
+//      for songDictionary in songs {
+//        print(songDictionary["title"])
+//        print(songDictionary["title"]! as? String)
+//        let builder = SongBuilder()
+//          .with(title: songDictionary["title"] as? String)
+//          .with(artist: songDictionary["artist"] as? String)
+//          .with(duration: songDictionary["duration"] as? TimeInterval)
+//          .with(mediaURL: songDictionary["mediaURL"] as? String)
+//          .with(coverArtURL: songDictionary["coverArtURL"] as? String)
+//
+//        if let song = builder.build() {
+//          allSongs.append(song)
+//        }
+//      }
+//      completion(true)
+//    } else {
+//      completion(false)
+//    }
+//  }
+//}
+
   func load(dictionary: [String: Any], completion: (Bool) -> Void) {
     if let songs = dictionary["Songs"] as? [[String: Any]] {
       for songDictionary in songs {
+        print(songDictionary["title"])
+        print(songDictionary["title"]! as? String)
+        let title = songDictionary["title"] as! String
+        let artist = songDictionary["artist"] as! String
+        let duration = songDictionary["duration"] as! TimeInterval
+        let mediaURL = URL(string: songDictionary["mediaURL"] as! String)
+        let coverArtURL = URL(string: songDictionary["coverArtURL"] as! String)
+        
         let builder = SongBuilder()
-          .with(title: songDictionary["title"] as? String)
-          .with(artist: songDictionary["artist"] as? String)
-          .with(duration: songDictionary["duration"] as? TimeInterval)
-          .with(mediaURL: songDictionary["mediaURL"] as? String)
-          .with(coverArtURL: songDictionary["coverArtURL"] as? String)
+        if let song = builder.testBuild(title: title, duration: duration, artist: artist, mediaURL: mediaURL!, coverArtURL: coverArtURL!) {
+          allSongs.append(song)
+        }
+        
         if let song = builder.build() {
           allSongs.append(song)
         }
@@ -57,3 +89,7 @@ class DataStack: NSObject {
     }
   }
 }
+
+
+
+

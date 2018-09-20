@@ -27,6 +27,7 @@
 /// THE SOFTWARE.
 
 import UIKit
+import SwiftyJSON
 
 class SongCollectionDatasource: NSObject {
 
@@ -54,11 +55,40 @@ class SongCollectionDatasource: NSObject {
     }
 
     if let dictionary = NSDictionary(contentsOfFile: file) as? [String: Any] {
+      print(dictionary)
       dataStack.load(dictionary: dictionary) { [weak self] success in
         self?.managedCollection.reloadData()
       }
     }
   }
+  
+  func loadSpotify(dict: [[String: Any]]) {
+    var dictionaryTest:[String: Any] = [:]
+    dictionaryTest["Songs"] = dict
+      dataStack.load(dictionary: dictionaryTest) { [weak self] success in
+        self?.managedCollection.reloadData()
+      }
+    
+  }
+  
+  func parseSpotifyTracks(songs: JSON) -> [[String: Any]] {
+    var songArr = [[String: Any]]()
+    for i in 0..<songs["items"].count {
+      var songDict: [String: Any] = [:]
+      var song = songs["items"][i]
+      songDict["title"] = song["name"]
+      songDict["artist"] = song["artists"][0]["name"]
+      songDict["duration"] = song["duration_ms"]
+      songDict["coverArtURL"] = song["album"]["images"][0]["url"]
+      songDict["mediaURL"] = song["uri"]
+      
+      songArr.append(songDict)
+    }
+    return songArr
+}
+
+
+  
 }
 
 // MARK: - UICollectionViewDataSource
