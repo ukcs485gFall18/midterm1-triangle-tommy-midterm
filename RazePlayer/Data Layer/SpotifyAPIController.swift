@@ -36,19 +36,17 @@ class SpotifyAPIController: NSObject {
   let baseSpotifyUrl = "https://api.spotify.com/v1/"
   
   // Code to send an API request to the Spotify API, and parse through the returned JSON
-  func sendAPIRequest(apiURL: String, accessToken: String){
+  func sendAPIRequest(apiURL: String, accessToken: String, completionHandler: @escaping (JSON) ->Void){
     let token = "Bearer \(accessToken)"
     let headers = ["Accept":"application/json", "Authorization": token]
     let queryURL = baseSpotifyUrl + apiURL
     print(queryURL)
     Alamofire.request(queryURL, method: .get, parameters: nil, headers: headers).responseJSON(completionHandler: {
       response in
-      let json = JSON(response.data!)
-      var items = json["items"]
-      for i in 0..<items.count {
-        print(items[i]["name"])
+      if response.data != nil {
+        let jsonData = JSON(response.data!)
+        completionHandler(jsonData)
       }
-      print(items)
     })
   }
   

@@ -48,7 +48,9 @@ class SongViewController: UIViewController, SongSubscriber {
     collectionView.delegate = self
     if let token = accessToken {
         let queryURL = "me/top/tracks?time_range=medium_term&limit=3&offset=5"
-        SpotifyAPIController.shared.sendAPIRequest(apiURL: queryURL, accessToken: token)
+      SpotifyAPIController.shared.sendAPIRequest(apiURL: queryURL, accessToken: token, completionHandler: { data in
+        print(data)
+      })
         print(accessToken)
     }
   
