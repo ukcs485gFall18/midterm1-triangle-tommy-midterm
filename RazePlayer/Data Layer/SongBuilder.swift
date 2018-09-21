@@ -46,12 +46,7 @@ class SongBuilder: NSObject {
     return Song(title: title, duration: duration, artist: artist, mediaURL: mediaURL, coverArtURL: coverArtURL)
   }
   
-  func testBuild(title: String, duration: TimeInterval, artist: String, mediaURL: URL, coverArtURL: URL) -> Song? {
-    return Song(title: title, duration: duration, artist: artist, mediaURL: mediaURL, coverArtURL: coverArtURL)
-  }
-  
   func with(title: String?) -> Self {
-    print(title)
     self.title = title
     return self
   }

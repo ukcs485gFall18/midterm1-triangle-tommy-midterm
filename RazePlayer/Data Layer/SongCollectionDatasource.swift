@@ -76,11 +76,11 @@ class SongCollectionDatasource: NSObject {
     for i in 0..<songs["items"].count {
       var songDict: [String: Any] = [:]
       var song = songs["items"][i]
-      songDict["title"] = song["name"]
-      songDict["artist"] = song["artists"][0]["name"]
-      songDict["duration"] = song["duration_ms"]
-      songDict["coverArtURL"] = song["album"]["images"][0]["url"]
-      songDict["mediaURL"] = song["uri"]
+      songDict["title"] = song["name"].string
+      songDict["artist"] = song["artists"][0]["name"].string
+      songDict["duration"] = song["duration_ms"].string
+      songDict["coverArtURL"] = song["album"]["images"][0]["url"].string
+      songDict["mediaURL"] = song["uri"].string
       
       songArr.append(songDict)
     }
@@ -95,8 +95,7 @@ class SongCollectionDatasource: NSObject {
 extension SongCollectionDatasource: UICollectionViewDataSource {
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    let fakerepeats = 5
-    return dataStack.allSongs.count * fakerepeats
+    return dataStack.allSongs.count
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

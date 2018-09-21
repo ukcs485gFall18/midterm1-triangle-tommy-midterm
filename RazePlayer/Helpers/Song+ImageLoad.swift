@@ -31,15 +31,16 @@ import UIKit
 extension Song {
 
   func loadSongImage(completion: @escaping ((UIImage?) -> (Void))) {
-    guard let imageURL = coverArtURL,
-      let file = Bundle.main.path(forResource: imageURL.absoluteString, ofType:"jpg") else {
-        return
+    
+    if self.coverArtURL == nil {
+      return
     }
     
     DispatchQueue.global(qos: .background).async {
-      let image = UIImage(contentsOfFile: file)
+      let coverImageData = NSData(contentsOf: self.coverArtURL!)
+      let coverImage = UIImage(data: coverImageData! as Data)
       DispatchQueue.main.async {
-        completion(image)
+        completion(coverImage)
       }
     }
   }
