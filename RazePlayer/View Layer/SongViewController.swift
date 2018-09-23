@@ -46,7 +46,7 @@ class SongViewController: UIViewController, SongSubscriber {
     datasource = SongCollectionDatasource(collectionView: collectionView)
     collectionView.delegate = self
     if let token = accessToken {
-      let queryURL = "me/top/tracks?time_range=medium_term&limit=15&offset=5"
+      let queryURL = "me/top/tracks?time_range=medium_term&limit=50&offset=5"
       // loads user's top songs as a default
       SpotifyAPIController.shared.sendAPIRequest(apiURL: queryURL, accessToken: token, completionHandler: { data in
         let dict: [[String: Any]] = self.datasource.parseSpotifyTracks(songs: data)
