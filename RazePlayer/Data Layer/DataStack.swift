@@ -40,6 +40,7 @@ class DataStack: NSObject {
   private(set) var allSongs: [Song] = []
   
   func load(dictionary: [String: Any], completion: (Bool) -> Void) {
+    allSongs.removeAll()
     if let songs = dictionary["Songs"] as? [[String: Any]] {
       for songDictionary in songs {
         let builder = SongBuilder()

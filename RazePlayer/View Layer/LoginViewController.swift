@@ -131,6 +131,7 @@ class LoginViewController: UIViewController, SPTAudioStreamingPlaybackDelegate, 
       let dvc = tabVc.viewControllers![0] as! SongViewController
       
       dvc.accessToken = self.session.accessToken
+      dvc.player = self.player
     }
 }
 

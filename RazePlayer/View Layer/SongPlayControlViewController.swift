@@ -30,11 +30,14 @@ import UIKit
 
 class SongPlayControlViewController: UIViewController, SongSubscriber {
 
+  var player: SPTAudioStreamingController?
+    
   // MARK: - IBOutlets
   @IBOutlet weak var songTitle: UILabel!
   @IBOutlet weak var songArtist: UILabel!
   @IBOutlet weak var songDuration: UILabel!
-
+  @IBOutlet weak var playButton: UIButton!
+    
   // MARK: - Properties
   var currentSong: Song? {
     didSet {
@@ -47,6 +50,18 @@ class SongPlayControlViewController: UIViewController, SongSubscriber {
     super.viewDidLoad()
     configureFields()
   }
+
+    @IBAction func playButtonTapped(_ sender: Any) {
+        self.player?.playSpotifyURI(currentSong?.mediaURL?.absoluteString, startingWith: 0, startingWithPosition: 0, callback: { error in
+            if (error != nil){
+                print("Succesfully Playing")
+            }
+            else {
+                print(error)
+            }
+            
+        })
+    }
 }
 
 // MARK: - Internal

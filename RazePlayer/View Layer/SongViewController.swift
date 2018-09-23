@@ -28,23 +28,27 @@
 
 import UIKit
 
-class SongViewController: UIViewController, SongSubscriber {
+class SongViewController: UIViewController, SongSubscriber, UISearchBarDelegate {
 
   // MARK: - Properties
   var datasource:SongCollectionDatasource!
   var miniPlayer:MiniPlayerViewController?
   var currentSong: Song?
   var accessToken: String?
+  var player: SPTAudioStreamingController?
 
   // MARK: - IBOutlets
   @IBOutlet weak var collectionView: UICollectionView!
 
-  // MARK: - View Life Cycle
+    @IBOutlet weak var searchBar: UISearchBar!
+    // MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
     
     datasource = SongCollectionDatasource(collectionView: collectionView)
     collectionView.delegate = self
+    searchBar.delegate = self
+    
     if let token = accessToken {
       let queryURL = "me/top/tracks?time_range=medium_term&limit=50&offset=5"
       // loads user's top songs as a default
@@ -53,7 +57,21 @@ class SongViewController: UIViewController, SongSubscriber {
         self.datasource.loadSpotify(dict: dict)
       })
     }
+    self.miniPlayer!.player = self.player
   }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if let token = self.accessToken {
+            let modifiedText = searchText.replacingOccurrences(of: " ", with: "%20")
+            let queryURL = "search?q=\(modifiedText)&type=track&market=US&limit=15&offset=5"
+            // loads user's top songs as a default
+            SpotifyAPIController.shared.sendAPIRequest(apiURL: queryURL, accessToken: token, completionHandler: { data in
+                let dict: [[String: Any]] = self.datasource.parseSpotifySearch(songs: data)
+                print(dict)
+                self.datasource.loadSpotify(dict: dict)
+            })
+        }
+    }
 
   // MARK: - Navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

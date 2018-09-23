@@ -37,6 +37,7 @@ class MiniPlayerViewController: UIViewController, SongSubscriber {
   // MARK: - Properties
   var currentSong: Song?
   weak var delegate: MiniPlayerDelegate?
+  var player: SPTAudioStreamingController?
 
   // MARK: - IBOutlets
   @IBOutlet weak var thumbImage: UIImageView!
@@ -50,6 +51,22 @@ class MiniPlayerViewController: UIViewController, SongSubscriber {
 
     configure(song: nil)
   }
+    @IBAction func playButtonTapped(_ sender: Any) {
+      print("mini tapped")
+      self.player?.playSpotifyURI(currentSong?.mediaURL?.absoluteString, startingWith: 0, startingWithPosition: 0, callback: { error in
+        if (error != nil){
+          print("Succesfully Playing")
+        }
+        else {
+          print(error)
+        }
+        
+      })
+        
+    }
+    @IBAction func nextTapped(_ sender: Any) {
+        self.player?.setIsPlaying(false, callback: nil)
+    }
 }
 
 // MARK: - Internal

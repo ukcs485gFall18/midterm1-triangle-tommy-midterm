@@ -67,6 +67,7 @@ class SongCollectionDatasource: NSObject {
     dictionaryTest["Songs"] = dict
       dataStack.load(dictionary: dictionaryTest) { [weak self] success in
         self?.managedCollection.reloadData()
+        print("reloaded data")
       }
     
   }
@@ -87,7 +88,22 @@ class SongCollectionDatasource: NSObject {
     return songArr
 }
 
-
+  func parseSpotifySearch(songs: JSON) -> [[String: Any]] {
+    var songArr = [[String: Any]]()
+    for i in 0..<songs["tracks"]["items"].count {
+      var songDict: [String: Any] = [:]
+      var song = songs["tracks"]["items"][i]
+      print(song)
+      songDict["title"] = song["name"].string
+      songDict["artist"] = song["artists"][0]["name"].string
+      songDict["duration"] = song["duration_ms"].string
+      songDict["coverArtURL"] = song["album"]["images"][0]["url"].string
+      songDict["mediaURL"] = song["uri"].string
+      print(songDict)
+      songArr.append(songDict)
+    }
+    return songArr
+  }
   
 }
 
@@ -103,6 +119,7 @@ extension SongCollectionDatasource: UICollectionViewDataSource {
       assertionFailure("Should have dequeued SongCell here")
       return UICollectionViewCell()
     }
+    print(cell.songTitle)
     return configured(cell, at: indexPath)
   }
   
