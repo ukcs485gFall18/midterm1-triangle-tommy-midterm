@@ -62,6 +62,9 @@ class SongCollectionDatasource: NSObject {
     }
   }
   
+  //Load Spotify Function - Coded By Zachary Moore
+  /*Takes a dictionary with the songs and their attributes and formats another dictionary for feeding into the dataStack load function.
+ */
   func loadSpotify(dict: [[String: Any]]) {
     var dictionaryTest:[String: Any] = [:]
     dictionaryTest["Songs"] = dict
@@ -72,10 +75,13 @@ class SongCollectionDatasource: NSObject {
     
   }
   
+  //parsetSpotifyTracks function - Coded By Zachary Moore
+  /* Takes the JSON provided by the Spotify API and creates an array of dictionaries for the songs. Grabs each song attribute from the API "items" array for allocation into the song dictionaries */
   func parseSpotifyTracks(songs: JSON) -> [[String: Any]] {
-    var songArr = [[String: Any]]()
-    for i in 0..<songs["items"].count {
+    var songArr = [[String: Any]]() //create return array
+    for i in 0..<songs["items"].count { //Loop through the API array for each song
       var songDict: [String: Any] = [:]
+      //Assign the necessary attributes
       var song = songs["items"][i]
       songDict["title"] = song["name"].string
       songDict["artist"] = song["artists"][0]["name"].string
