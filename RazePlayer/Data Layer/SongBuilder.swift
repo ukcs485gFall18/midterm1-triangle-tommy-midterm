@@ -28,6 +28,7 @@
 
 import Foundation
 
+// Code is from Tutorial
 class SongBuilder: NSObject {
 
   // MARK: - Properties

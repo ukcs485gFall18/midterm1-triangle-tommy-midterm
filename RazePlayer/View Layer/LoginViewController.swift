@@ -31,6 +31,9 @@ import UIKit
 // LoginViewController
 // Login with Spotify, and upon successful login, go to the main SongViewController scene
 // Created by Thomas Deeter
+// Partially referenced from Brian Hans' tutorial and Elon Rubin's
+// Brian Hans: https://medium.com/@brianhans/spotify-ios-sdk-authentication-b2c35cd4affb
+// Elon Rubin: https://medium.com/@elonrubin/ios-spotify-sdk-swift-3-0-tutorial-b629af4b889d
 
 class LoginViewController: UIViewController, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate {
   
@@ -87,7 +90,9 @@ class LoginViewController: UIViewController, SPTAudioStreamingPlaybackDelegate, 
     }
   
     // Initialize the Spotify streaming controller
+    // Code modeled off of Elon Rubin's tutorial
     func initializePlayer(authSession:SPTSession){
+      // if the player has yet to be initialized, set initialize it w/ access token & set delegate
       if self.player == nil {
         self.player = SPTAudioStreamingController.sharedInstance()
         self.player!.playbackDelegate = self
@@ -104,6 +109,7 @@ class LoginViewController: UIViewController, SPTAudioStreamingPlaybackDelegate, 
     // Handle the login once the button is pressed
     @IBAction func loginPressed(_ sender: Any) {
       // if the user has the App installed, login with that, otherwise, login with Web version
+      // This code idea was in Brian Hans' tutorial
       if SPTAuth.supportsApplicationAuthentication(){
         UIApplication.shared.open(appUrl!, options: [:], completionHandler: nil)
       }

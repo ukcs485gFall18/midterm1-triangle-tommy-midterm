@@ -31,7 +31,7 @@ import UIKit
 extension Song {
 
   func loadSongImage(completion: @escaping ((UIImage?) -> (Void))) {
-    
+    // Changed Image loading code
     if self.coverArtURL == nil {
       return
     }

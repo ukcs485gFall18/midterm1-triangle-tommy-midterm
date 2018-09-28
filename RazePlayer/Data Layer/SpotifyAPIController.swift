@@ -30,6 +30,8 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+// API Querying Code written by Thomas Deeter
+// New functionality Added
 class SpotifyAPIController: NSObject {
   
   static let shared = SpotifyAPIController()
@@ -37,10 +39,12 @@ class SpotifyAPIController: NSObject {
   
   // Code to send an API request to the Spotify API, and parse through the returned JSON
   func sendAPIRequest(apiURL: String, accessToken: String, completionHandler: @escaping (JSON) ->Void){
+    // set access token in the HTTP Request
     let token = "Bearer \(accessToken)"
     let headers = ["Accept":"application/json", "Authorization": token]
     let queryURL = baseSpotifyUrl + apiURL
     print(queryURL)
+    // send GET request and do completion handler on response JSON
     Alamofire.request(queryURL, method: .get, parameters: nil, headers: headers).responseJSON(completionHandler: {
       response in
       if response.data != nil {

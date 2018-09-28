@@ -31,6 +31,7 @@ import UIKit
 protocol MaxiPlayerSourceProtocol: class {
     var originatingFrameInWindow: CGRect { get }
     var originatingCoverImageView: UIImageView { get }
+    func refreshButtonState()
 }
 
 
@@ -39,6 +40,7 @@ class MaxiSongCardViewController: UIViewController, SongSubscriber {
   // MARK: - Properties
   let cardCornerRadius: CGFloat = 10
   var currentSong: Song?
+  // Added Player
   var player: SPTAudioStreamingController?
   
   weak var sourceView: MaxiPlayerSourceProtocol!
@@ -129,6 +131,12 @@ class MaxiSongCardViewController: UIViewController, SongSubscriber {
     animateImageLayerIn()
     animateCoverImageIn()
     animateLowerModuleIn()
+  }
+  // added by Thomas. Refreshes the mini player buttons when the maxi player disappears. 
+  override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(true)
+    print("disappeared")
+    self.sourceView.refreshButtonState()
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

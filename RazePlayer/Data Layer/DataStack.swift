@@ -34,6 +34,7 @@ enum DataStackState {
   case loaded
 }
 
+// Code is from Tutorial
 class DataStack: NSObject {
 
   // MARK: - Properties

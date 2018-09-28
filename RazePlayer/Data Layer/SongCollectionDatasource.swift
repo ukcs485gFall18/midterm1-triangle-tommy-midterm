@@ -47,7 +47,7 @@ class SongCollectionDatasource: NSObject {
     let realindex = index % dataStack.allSongs.count
     return dataStack.allSongs[realindex]
   }
-  
+  // old load() function from tutorial
   func load() {
     guard let file = Bundle.main.path(forResource: "CannedSongs", ofType: "plist") else {
       assertionFailure("bundle failure - couldnt load CannedSongs.plist - check it's added to target")
@@ -125,7 +125,6 @@ extension SongCollectionDatasource: UICollectionViewDataSource {
       assertionFailure("Should have dequeued SongCell here")
       return UICollectionViewCell()
     }
-    print(cell.songTitle)
     return configured(cell, at: indexPath)
   }
   
