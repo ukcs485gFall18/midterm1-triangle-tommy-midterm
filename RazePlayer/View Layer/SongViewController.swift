@@ -108,6 +108,8 @@ extension SongViewController: MiniPlayerDelegate {
     maxiCard.currentSong = song
     //4.
     maxiCard.sourceView = miniPlayer
+    //5.
+    maxiCard.player = self.player
     
     present(maxiCard, animated: false)
   }

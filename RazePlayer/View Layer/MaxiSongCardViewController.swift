@@ -39,6 +39,7 @@ class MaxiSongCardViewController: UIViewController, SongSubscriber {
   // MARK: - Properties
   let cardCornerRadius: CGFloat = 10
   var currentSong: Song?
+  var player: SPTAudioStreamingController?
   
   weak var sourceView: MaxiPlayerSourceProtocol!
 
@@ -133,6 +134,7 @@ class MaxiSongCardViewController: UIViewController, SongSubscriber {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let destination = segue.destination as? SongSubscriber {
       destination.currentSong = currentSong
+      destination.player = self.player
     }
   }
   

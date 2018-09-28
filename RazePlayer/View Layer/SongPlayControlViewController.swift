@@ -50,17 +50,38 @@ class SongPlayControlViewController: UIViewController, SongSubscriber {
     super.viewDidLoad()
     configureFields()
   }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    // set the playback buttons to the current state on appear
+    if let state = self.player?.playbackState {
+      if (state.isPlaying == true) {
+        self.playButton.setImage(UIImage(named: "pause"), for: .normal)
+      }
+      else {
+        self.playButton.setImage(UIImage(named: "play"), for: .normal)
+      }
+    }
+  }
 
+  // Playing functionality: Rob Cala
     @IBAction func playButtonTapped(_ sender: Any) {
+      // if the player is not yet initialized, play the current song
+      if self.player?.playbackState == nil {
         self.player?.playSpotifyURI(currentSong?.mediaURL?.absoluteString, startingWith: 0, startingWithPosition: 0, callback: { error in
-            if (error != nil){
-                print("Succesfully Playing")
-            }
-            else {
-                print(error)
-            }
-            
+          self.playButton.setImage(UIImage(named: "pause"), for: .normal)
         })
+      }
+        // if the button is tapped when the song is playing, pause the music and set the image to play button
+      else if self.player?.playbackState.isPlaying == true {
+        self.playButton.setImage(UIImage(named: "play"), for: .normal)
+        self.player?.setIsPlaying(false, callback: nil)
+      }
+        // if the button is tapped when the song is paused, resume the music and set the image to pause button
+      else if self.player?.playbackState.isPlaying == false {
+        self.playButton.setImage(UIImage(named: "pause"), for: .normal)
+        self.player?.setIsPlaying(true, callback: nil)
+      }
+
     }
 }
 
