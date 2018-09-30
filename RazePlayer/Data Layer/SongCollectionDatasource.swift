@@ -94,7 +94,7 @@ class SongCollectionDatasource: NSObject {
     return songArr
 }
 
-  
+  //Created by Steven Gripshover
   //This function modified the spotify track search to get what songs were being searched in the search bar.
   func parseSpotifySearch(songs: JSON) -> [[String: Any]] {
     var songArr = [[String: Any]]()
