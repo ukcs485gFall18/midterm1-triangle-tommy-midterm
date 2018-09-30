@@ -28,6 +28,7 @@
 
 import UIKit
 
+//Portions of this involving search bar created by Steven Gripshover
 class SongViewController: UIViewController, SongSubscriber, UISearchBarDelegate {
 
   // MARK: - Properties
@@ -63,10 +64,12 @@ class SongViewController: UIViewController, SongSubscriber, UISearchBarDelegate 
     }
     self.miniPlayer!.player = self.player
   }
-
+  
+    //Created by Steven Gripshover, allowing the user to see a search bar and for it to modify the URL given to the spotify API
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if let token = self.accessToken {
             let modifiedText = searchText.replacingOccurrences(of: " ", with: "%20")
+          //Here is where the link is changed
             let queryURL = "search?q=\(modifiedText)&type=track&market=US&limit=15&offset=5"
             // loads user's top songs as a default
             SpotifyAPIController.shared.sendAPIRequest(apiURL: queryURL, accessToken: token, completionHandler: { data in
