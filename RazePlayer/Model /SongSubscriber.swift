@@ -27,7 +27,7 @@
 /// THE SOFTWARE.
 
 import Foundation
-
+// This file is base-code from Tutorial
 protocol SongSubscriber: class {
   var currentSong: Song? { get set }
   var player: SPTAudioStreamingController? { get set }

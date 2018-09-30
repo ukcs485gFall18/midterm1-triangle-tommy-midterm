@@ -27,7 +27,7 @@
 /// THE SOFTWARE.
 
 import UIKit
-
+// This file is base-code from Tutorial
 class SongCell: UICollectionViewCell {
 
   // MARK: - IBOutlets

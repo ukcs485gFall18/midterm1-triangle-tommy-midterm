@@ -1,5 +1,5 @@
 //
-//  Use this file to import your target's public headers that you would like to expose to Swift.
+//  Thomas Deeter: Added bridging header in order to use the Spotify iOS framework
 //
 #import <SpotifyAuthentication/SpotifyAuthentication.h>
 #import <SpotifyAudioPlayback/SpotifyAudioPlayback.h>

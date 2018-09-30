@@ -95,6 +95,7 @@ class MaxiSongCardViewController: UIViewController, SongSubscriber {
   @IBOutlet weak var bottomSectionImageView: UIImageView!
  
   // MARK: - View Life Cycle
+  // Most code below is animation code that we followed along in the tutorial
   override func awakeFromNib() {
     super.awakeFromNib()
 
@@ -106,8 +107,6 @@ class MaxiSongCardViewController: UIViewController, SongSubscriber {
     super.viewDidLoad()
     
     backingImageView.image = backingImage
-
-   
     scrollView.contentInsetAdjustmentBehavior = .never //dont let Safe Area insets affect the scroll view
     
     coverImageContainer.layer.cornerRadius = cardCornerRadius
@@ -115,7 +114,7 @@ class MaxiSongCardViewController: UIViewController, SongSubscriber {
 
     
   }
-
+  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     configureImageLayerInStartPosition()
@@ -135,7 +134,6 @@ class MaxiSongCardViewController: UIViewController, SongSubscriber {
   // added by Thomas. Refreshes the mini player buttons when the maxi player disappears. 
   override func viewDidDisappear(_ animated: Bool) {
     super.viewDidDisappear(true)
-    print("disappeared")
     self.sourceView.refreshButtonState()
   }
   
@@ -165,7 +163,7 @@ extension MaxiSongCardViewController {
 //background image animation
 extension MaxiSongCardViewController {
   
-  //1.
+  //1. Configure the backing image
   private func configureBackingImageInPosition(presenting: Bool) {
     let edgeInset: CGFloat = presenting ? backingImageEdgeInset : 0
     let dimmerAlpha: CGFloat = presenting ? 0.3 : 0
@@ -176,13 +174,13 @@ extension MaxiSongCardViewController {
     let aspectRatio = backingImageView.frame.height / backingImageView.frame.width
     backingImageTopInset.constant = edgeInset * aspectRatio
     backingImageBottomInset.constant = edgeInset * aspectRatio
-    //2.
+    //2. Set the dimmer alpha speed
     dimmerLayer.alpha = dimmerAlpha
-    //3.
+    //3. Set the corner radius
     backingImageView.layer.cornerRadius = cornerRadius
   }
   
-  //4.
+  //4. Define the animation of the backing image
   private func animateBackingImage(presenting: Bool) {
     UIView.animate(withDuration: primaryDuration) {
       self.configureBackingImageInPosition(presenting: presenting)
@@ -190,11 +188,11 @@ extension MaxiSongCardViewController {
     }
   }
   
-  //5.
+  //5. Perform the animation of the backing image In
   func animateBackingImageIn() {
     animateBackingImage(presenting: true)
   }
-  
+  //6. Perform the animation of the backing image Out
   func animateBackingImageOut() {
     animateBackingImage(presenting: false)
   }

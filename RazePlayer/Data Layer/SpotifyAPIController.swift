@@ -30,8 +30,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-// API Querying Code written by Thomas Deeter
-// New functionality Added
+// New file added: API Querying Code written by Thomas Deeter
 class SpotifyAPIController: NSObject {
   
   static let shared = SpotifyAPIController()

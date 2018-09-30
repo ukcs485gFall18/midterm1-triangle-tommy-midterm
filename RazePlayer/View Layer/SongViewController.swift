@@ -52,9 +52,9 @@ class SongViewController: UIViewController, SongSubscriber, UISearchBarDelegate 
     
     if let token = accessToken {
       let queryURL = "me/top/tracks?time_range=medium_term&limit=50&offset=5"
-      // loads user's top songs as a default
+      // loads user's top songs as a default on load
       SpotifyAPIController.shared.sendAPIRequest(apiURL: queryURL, accessToken: token, completionHandler: { data in
-        if data == nil {
+        if data == nil { // if the query is unsuccessful, load the canned songs from tutorial
           print("Spotify Query nil, loading canned data")
           self.datasource.load()
         }
@@ -85,14 +85,13 @@ class SongViewController: UIViewController, SongSubscriber, UISearchBarDelegate 
     if let destination = segue.destination as? MiniPlayerViewController {
       miniPlayer = destination
       miniPlayer?.delegate = self
-
     }
   }
 }
 
 // MARK: - UICollectionViewDelegate
 extension SongViewController: UICollectionViewDelegate {
-
+  // set the current song when an item is tapped in the CollectionView
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     currentSong = datasource.song(at: indexPath.row)
     miniPlayer?.configure(song: currentSong)
@@ -101,23 +100,22 @@ extension SongViewController: UICollectionViewDelegate {
 
 extension SongViewController: MiniPlayerDelegate {
   func expandSong(song: Song) {
-    //1.
+    //1. Instantiate the MaxiSongCardViewController to display close-up of song
     guard let maxiCard = storyboard?.instantiateViewController(
       withIdentifier: "MaxiSongCardViewController")
       as? MaxiSongCardViewController else {
         assertionFailure("No view controller ID MaxiSongCardViewController in storyboard")
         return
     }
-    
-    //2.
+    //2. Take snapshot of current view
     maxiCard.backingImage = view.makeSnapshot()
-    //3.
+    //3. Set current song in the Maxi Player
     maxiCard.currentSong = song
-    //4.
+    //4. Set the source view
     maxiCard.sourceView = miniPlayer
-    //5.
+    //5. Set the MaxiCard's player to the current SPT player
     maxiCard.player = self.player
-    
+    // 6. Present the Maxi Player
     present(maxiCard, animated: false)
   }
 }

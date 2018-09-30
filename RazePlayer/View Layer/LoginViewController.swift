@@ -70,9 +70,7 @@ class LoginViewController: UIViewController, SPTAudioStreamingPlaybackDelegate, 
   
     // Upon first login, initialize certain session objects
     @objc func updateAfterFirstLogin () {
-      print("updatingAfterFirstLogin")
       let defaults = UserDefaults.standard
-      
       // Check if the login session is valid
       if let sessionObj:AnyObject = defaults.object(forKey: "SpotifySession") as AnyObject? {
         let sessionDataObj = sessionObj as! Data
@@ -130,12 +128,11 @@ class LoginViewController: UIViewController, SPTAudioStreamingPlaybackDelegate, 
     print("ERROR!!!!!!")
   }
   
-  
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
       // The segue goes into a TabBarController, we know the first view controller after the Tab bar is the SongViewController
       let tabVc = segue.destination as! UITabBarController
       let dvc = tabVc.viewControllers![0] as! SongViewController
-      
+      // send the access token and player over to the SongViewController
       dvc.accessToken = self.session.accessToken
       dvc.player = self.player
     }

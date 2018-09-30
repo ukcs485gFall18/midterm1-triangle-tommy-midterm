@@ -29,6 +29,7 @@
 import UIKit
 import SwiftyJSON
 
+// This file is base-code from Tutorial, plus our modifications
 class SongCollectionDatasource: NSObject {
 
   // MARK: - Properties
@@ -53,7 +54,6 @@ class SongCollectionDatasource: NSObject {
       assertionFailure("bundle failure - couldnt load CannedSongs.plist - check it's added to target")
       return
     }
-
     if let dictionary = NSDictionary(contentsOfFile: file) as? [String: Any] {
       print(dictionary)
       dataStack.load(dictionary: dictionary) { [weak self] success in
